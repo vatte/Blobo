@@ -32,20 +32,20 @@ class Blobo:
 		#data format: 4 bytes, 10 2-byte integers, 1 byte
 		self.key = 'BBBBhhhhhhhhhhB'
 		time.sleep(5)
-		
+
 		self.t = time.time()
 		self.ser.write(chr(65))
 
 		self.alive = True # thread will shutdown when alive is set to False
 		self.readThread = Thread(target=self.read)
 		self.readThread.start()
-	
+
 	def read(self):
 		while(self.alive):
-			line = struct.unpack('BBBBhhhhhhhhhhB', self.ser.read(25))
+			line = struct.unpack(self.key, self.ser.read(25))
 			if line[0] == 0 and line[1] == 65:
 				#we're interested in the integers
-				self.data = line[4:-1] 
+				self.data = line[4:-1]
 				self.update(self.data)
 			if time.time()-self.t > 1:
 				#keeping connection alive
@@ -65,7 +65,7 @@ if __name__ == "__main__":
 		print ("magnetometer :\t" + '\t'.join(str(w) for w in data[6:9]))
 		print ("pressure :\t" + str(data[9]))
 
-	
+
 	if len(sys.argv) < 2:
 		raise Exception("No serial device provided as argument!")
 	else:
@@ -77,5 +77,3 @@ if __name__ == "__main__":
 			time.sleep(5)
 	except KeyboardInterrupt:
 		blobo.alive = False
-
-
