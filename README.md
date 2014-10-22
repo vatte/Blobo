@@ -30,7 +30,7 @@ Tested in Ubuntu 14.04
 - Now test the driver by running
 
 ```
-  $ [sudo] python Blobo /dev/rfcomm0
+  $ [sudo] python Blobo.py /dev/rfcomm0
 ```
 
 ## License
