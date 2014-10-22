@@ -62,8 +62,8 @@ if __name__ == "__main__":
 	def print_data(data):
 		print ("accelerometer :\t" + '\t'.join(str(w) for w in data[0:3]))
 		print ("gyroscope :\t" + '\t'.join(str(w) for w in data[3:6]))
-		print ("magnetometer :\t" + '\t'.join(str(w) for w in data[6:9]))
-		print ("pressure :\t" + str(data[9]))
+		print ("magnetometer :\t" + '\t'.join(str(w) for w in data[7:10]))
+		print ("pressure :\t" + str(data[6]))
 
 
 	if len(sys.argv) < 2:
